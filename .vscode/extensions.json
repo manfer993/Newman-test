@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "alexkrechik.cucumberautocomplete",
+    "streetsidesoftware.code-spell-checker",
+    "adpyke.codesnap",
+    "yzhang.markdown-all-in-one",
+    "dbaeumer.vscode-eslint",
+    "vivaxy.vscode-conventional-commits",
+    "PKief.material-icon-theme",
+    "esbenp.prettier-vscode",
+    "github.vscode-github-actions"
+  ]
+}

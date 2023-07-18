@@ -1,0 +1,678 @@
+{
+	"info": {
+		"_postman_id": "d778c165-1c89-4594-a727-b1fb49a29856",
+		"name": "Strapi_POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10760691"
+	},
+	"item": [
+		{
+			"name": "Equipment",
+			"item": [
+				{
+					"name": "Get Equipments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const schema = {\r",
+									"    \"type\": \"object\",\r",
+									"    \"properties\": {\r",
+									"        \"data\": {\r",
+									"            \"type\": \"array\",\r",
+									"            \"items\": {\r",
+									"                \"additionalProperties\": false,\r",
+									"                \"properties\": {\r",
+									"                    \"id\": {\r",
+									"                        \"type\": \"number\"\r",
+									"                    },\r",
+									"                    \"attributes\": {\r",
+									"                        \"type\": \"object\",\r",
+									"                        \"properties\": {\r",
+									"                            \"name\": {\r",
+									"                                \"type\": \"string\"\r",
+									"                            },\r",
+									"                            \"material\": {\r",
+									"                                \"type\": \"string\"\r",
+									"                            },\r",
+									"                            \"quantity\": {\r",
+									"                                \"type\": \"number\"\r",
+									"                            },\r",
+									"                            \"createdAt\": {\r",
+									"                                \"type\": \"string\"\r",
+									"                            },\r",
+									"                            \"updatedAt\": {\r",
+									"                                \"type\": \"string\"\r",
+									"                            },\r",
+									"                            \"publishedAt\": {\r",
+									"                                \"type\": \"string\"\r",
+									"                            },\r",
+									"                            \"workouts\": {\r",
+									"                                \"type\": \"object\",\r",
+									"                                \"properties\": {\r",
+									"                                    \"data\": {\r",
+									"                                        \"type\": \"array\"\r",
+									"                                    }\r",
+									"                                }, \"required\": [\r",
+									"                                    \"data\"\r",
+									"                                ]\r",
+									"                            }\r",
+									"                        },\r",
+									"                        \"required\": [\r",
+									"                            \"name\",\r",
+									"                            \"material\",\r",
+									"                            \"quantity\",\r",
+									"                            \"createdAt\",\r",
+									"                            \"updatedAt\",\r",
+									"                            \"publishedAt\",\r",
+									"                            \"workouts\",\r",
+									"\r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"required\": [\r",
+									"                    \"id\",\r",
+									"                    \"attributes\"\r",
+									"                ]\r",
+									"            },\r",
+									"        },\r",
+									"        \"meta\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"properties\": {\r",
+									"                \"pagination\": {\r",
+									"                    \"type\": \"object\",\r",
+									"                    \"properties\": {\r",
+									"                        \"page\": {\r",
+									"                            \"type\": \"number\"\r",
+									"                        },\r",
+									"                        \"pageSize\": {\r",
+									"                            \"type\": \"number\"\r",
+									"                        },\r",
+									"                        \"pageCount\": {\r",
+									"                            \"type\": \"number\"\r",
+									"                        },\r",
+									"                        \"total\": {\r",
+									"                            \"type\": \"number\"\r",
+									"                        }\r",
+									"                    },\r",
+									"                    \"required\": [\r",
+									"                        \"page\",\r",
+									"                        \"pageSize\",\r",
+									"                        \"pageCount\",\r",
+									"                        \"total\",\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"required\": [\r",
+									"                \"pagination\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"required\": [\r",
+									"        \"data\",\r",
+									"        \"meta\"\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response schema validation\", () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/equipments?populate=*",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"equipments"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Equipment By Id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const schema = {\r",
+									"    \"type\": \"object\",\r",
+									"    \"properties\": {\r",
+									"        \"data\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"properties\": {\r",
+									"                \"id\": {\r",
+									"                    \"type\": \"number\"\r",
+									"                },\r",
+									"                \"attributes\": {\r",
+									"                    \"type\": \"object\",\r",
+									"                    \"properties\": {\r",
+									"                        \"name\": {\r",
+									"                            \"type\": \"string\"\r",
+									"                        },\r",
+									"                        \"material\": {\r",
+									"                            \"type\": \"string\"\r",
+									"                        },\r",
+									"                        \"quantity\": {\r",
+									"                            \"type\": \"number\"\r",
+									"                        },\r",
+									"                        \"createdAt\": {\r",
+									"                            \"type\": \"string\"\r",
+									"                        },\r",
+									"                        \"updatedAt\": {\r",
+									"                            \"type\": \"string\"\r",
+									"                        },\r",
+									"                        \"publishedAt\": {\r",
+									"                            \"type\": \"string\"\r",
+									"                        },\r",
+									"                        \"workouts\": {\r",
+									"                            \"type\": \"object\",\r",
+									"                            \"properties\": {\r",
+									"                                \"data\": {\r",
+									"                                    \"type\": \"array\"\r",
+									"                                }\r",
+									"                            }, \"required\": [\r",
+									"                                \"data\"\r",
+									"                            ]\r",
+									"                        }\r",
+									"                    },\r",
+									"                    \"required\": [\r",
+									"                        \"name\",\r",
+									"                        \"material\",\r",
+									"                        \"quantity\",\r",
+									"                        \"createdAt\",\r",
+									"                        \"updatedAt\",\r",
+									"                        \"publishedAt\",\r",
+									"                        \"workouts\",\r",
+									"\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"required\": [\r",
+									"                \"id\",\r",
+									"                \"attributes\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"meta\": {\r",
+									"            \"type\": \"object\"\r",
+									"        }\r",
+									"    },\r",
+									"    \"required\": [\r",
+									"        \"data\",\r",
+									"        \"meta\"\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response schema validation\", () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/equipments/1?populate=*",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"equipments",
+								"1"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Equitment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AuthToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"toalla\",\r\n        \"material\": \"tela\",\r\n        \"quantity\": 4\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/equipments?populate=*",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"equipments"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Equipment By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{AuthToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"toalla\",\r\n        \"material\": \"tela\",\r\n        \"quantity\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/equipments/4?populate=*",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"equipments",
+								"4"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Equipment By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/equipments/4?populate=*",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"equipments",
+								"4"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Workout",
+			"item": [
+				{
+					"name": "Get Workouts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/workouts?populate=*",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workouts"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Workout By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/workouts/1?populate=*",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workouts",
+								"1"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"\r",
+							"const schema = {\r",
+							"    \"type\": \"object\",\r",
+							"    \"properties\": {\r",
+							"        \"jwt\": {\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"user\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"properties\": {\r",
+							"                \"id\": {\r",
+							"                    \"type\": \"number\"\r",
+							"                },\r",
+							"                \"username\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                },\r",
+							"                \"email\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                },\r",
+							"                \"provider\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                },\r",
+							"                \"confirmed\": {\r",
+							"                    \"type\": \"boolean\"\r",
+							"                },\r",
+							"                \"blocked\": {\r",
+							"                    \"type\": \"boolean\"\r",
+							"                },\r",
+							"                \"createdAt\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                },\r",
+							"                \"updatedAt\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                }\r",
+							"            },\r",
+							"            \"required\": [\r",
+							"                \"id\",\r",
+							"                \"username\",\r",
+							"                \"email\",\r",
+							"                \"provider\",\r",
+							"                \"confirmed\",\r",
+							"                \"blocked\",\r",
+							"                \"createdAt\",\r",
+							"                \"updatedAt\"\r",
+							"            ]\r",
+							"        }\r",
+							"    },\r",
+							"    \"required\": [\r",
+							"        \"jwt\",\r",
+							"        \"user\"\r",
+							"    ]\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response schema validation\", () => {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check local user full name\", () => {\r",
+							"    pm.expect(response.user.username).to.eql(pm.variables.get('fullName'));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check local user email\", () => {\r",
+							"    pm.expect(response.user.email).to.eql(pm.environment.get('local_user_name'));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identifier\":\"{{local_user_name}}\",\r\n    \"password\":\"{{local_user_pwd}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/local",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"local"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const authZUrl = `${pm.environment.get(\"base_url\")}/auth/local`;",
+					"const postRequest = {",
+					"    url: authZUrl,",
+					"    method: 'POST',",
+					"    header: 'Content-Type:application/json',",
+					"    body: JSON.stringify({",
+					"        \"identifier\": `${pm.environment.get(\"local_user_name\")}`,",
+					"        \"password\": `${pm.environment.get(\"local_user_pwd\")}`",
+					"    })",
+					"};",
+					"",
+					"pm.sendRequest( postRequest, (error,response) => {",
+					"    pm.environment.unset(\"AuthToken\");",
+					"    console.log(error ? error : response.json());",
+					"    if (response.code == 200){",
+					"        pm.environment.set(\"AuthToken\",`BEARER ${response.json().jwt}`);",
+					"    }",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

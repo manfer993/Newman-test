@@ -1,0 +1,28 @@
+{
+  "name": "newman-test",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "newman run collections/workshop.postman_collection.json -e environments/demo.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html",
+    "start": "newman run collections/workshop.postman_collection.json -e environments/demo.postman_environment.json",
+    "test:newman": "node scripts/app.js",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "Cypress",
+    "Cucumber",
+    "BDD"
+  ],
+  "author": "Manuel Munoz",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "17.6.6",
+    "@commitlint/config-conventional": "17.6.6",
+    "eslint": "8.44.0",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.3",
+    "newman": "5.3.2",
+    "newman-reporter-htmlextra": "1.22.11",
+    "prettier": "3.0.0"
+  }
+}
