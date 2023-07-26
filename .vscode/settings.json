@@ -28,5 +28,5 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "conventionalCommits.scopes": ["core"]
+  "conventionalCommits.scopes": ["core", "settings"]
 }
