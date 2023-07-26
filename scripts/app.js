@@ -4,8 +4,8 @@ var newman = require("newman");
 // call newman.run to pass `options` object and wait for callback
 newman
   .run({
-    collection: require("../collections/Strapi_POC.postman_collection.json"),
-    environment: require("../environments/Local_PoC.postman_environment.json"),
+    collection: require("../collections/Booking.postman_collection.json"),
+    environment: require("../environments/Dev.postman_environment.json"),
     globals: require("../data/workspace.postman_globals.json"),
     reporters: ["cli", "htmlextra", "json"],
     reporter: {
