@@ -1,0 +1,6 @@
+{
+  "collection_id": "<collection_id>",
+  "environment_id": "<environment_id>",
+  "api_key": "<api_key>",
+  "postman_api_url": "https://api.getpostman.com"
+}
