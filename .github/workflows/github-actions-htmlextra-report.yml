@@ -10,6 +10,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Write the environment.json file 📝
+        # use quotes around the secret, as its value
+        # is simply inserted as a string into the command
+        run: |
+          echo '${{ secrets.ENVIRONMENT_CI }}' > environment.json
+
       # Install Node on the runner
       - name: Install Node
         uses: actions/setup-node@v2
@@ -25,8 +31,8 @@ jobs:
         run: mkdir -p testResults
 
       # Run the POSTMAN collection
-      - name: Run API Tests
-        run: npm test
+      - name: Run API Tests 🚀
+        run: npm run test:newman
 
       # Upload the contents of Test Results directory to workspace
       - name: Output the run Details

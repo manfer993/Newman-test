@@ -1,11 +1,12 @@
+var env = require("../environment.json");
 var newman = require("newman");
 // require newman in your project
 
 // call newman.run to pass `options` object and wait for callback
 newman
   .run({
-    collection: require("../collections/Booking.postman_collection.json"),
-    environment: require("../environments/Dev.postman_environment.json"),
+    collection: `${env.postman_api_url}/collections/${env.collection_id}?apikey=${env.api_key}`,
+    environment: `${env.postman_api_url}/environments/${env.environment_id}?apikey=${env.api_key}`,
     globals: require("../data/workspace.postman_globals.json"),
     reporters: ["cli", "htmlextra", "json"],
     reporter: {
