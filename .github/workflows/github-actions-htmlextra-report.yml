@@ -1,5 +1,4 @@
 # This workflow will help you to produce an HTML extra test results report
-
 name: Newman Tests HTML Report
 on: [push, pull_request]
 
@@ -11,9 +10,9 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
-      - name: Write the environment.json file 📝
         # use quotes around the secret, as its value
         # is simply inserted as a string into the command
+      - name: Write the environment.json file 📝
         run: |
           echo '${{ secrets.ENVIRONMENT_CI }}' > environment.json
 

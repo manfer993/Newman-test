@@ -3,15 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "test": "newman run collections/Booking.postman_collection.json -e environments/Dev.postman_environment.json -g data/workspace.postman_globals.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html",
-    "start": "newman run collections/Booking.postman_collection.json -e environments/Dev.postman_environment.json -g data/workspace.postman_globals.json",
     "test:newman": "node scripts/app.js",
     "prepare": "husky install"
   },
   "keywords": [
-    "Cypress",
-    "Cucumber",
-    "BDD"
+    "Newman",
+    "Javascript",
+    "Postman"
   ],
   "author": "Manuel Munoz",
   "license": "ISC",
