@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
 
       - name: Write the environment.json file 📝
         # use quotes around the secret, as its value
@@ -18,7 +19,7 @@ jobs:
 
       # Install Node on the runner
       - name: Install Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "16.x"
 
@@ -35,8 +36,8 @@ jobs:
         run: npm run test:newman
 
       # Upload the contents of Test Results directory to workspace
-      - name: Output the run Details
-        uses: actions/upload-artifact@v2
+      - name: Output the run Details 🖼
+        uses: actions/upload-artifact@v3
         with:
-          name: RunReports
-          path: testResults
+          name: Newman-Reports
+          path: testResults/html
